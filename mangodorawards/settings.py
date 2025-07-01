@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     # Custom apps
     "accounts",
     "common",
+    "candidates",
+    "voting",
 ]
 
 MIDDLEWARE = [
