@@ -30,7 +30,7 @@ pre-commit = "^4.2.0"
 [tool.ruff]
 exclude = ["migrations"]
 line-length = 110
-select = ["F", "E", "W", "I"]
+lint.select = ["F", "E", "W", "I"]
 
 [tool.black]
 exclude = '''
