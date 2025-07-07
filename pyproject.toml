@@ -28,14 +28,11 @@ ruff = "^0.12.1"
 pre-commit = "^4.2.0"
 
 [tool.ruff]
-exclude = ["migrations"]
 line-length = 110
+exclude = ["migrations"]
 lint.select = ["F", "E", "W", "I"]
 
-[tool.black]
-exclude = '''
-/(
-    migrations
-    | .venv
-)/
-'''
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+line-ending = "lf"
