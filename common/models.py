@@ -4,7 +4,6 @@ from django.utils import timezone
 
 
 class AbstractSingleton(models.Model):
-
     class Meta:
         abstract = True
 
@@ -37,5 +36,5 @@ class SiteParameters(AbstractSingleton):
         return today >= self.winners_reveal_date
 
     class Meta:
-        verbose_name = "Site Parameters"
-        verbose_name_plural = "Site Parameters"
+        verbose_name = 'Site Parameters'
+        verbose_name_plural = 'Site Parameters'

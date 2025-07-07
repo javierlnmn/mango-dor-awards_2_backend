@@ -6,10 +6,10 @@ class Nationality(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"{self.name} ({self.code})"
+        return f'{self.name} ({self.code})'
 
     class Meta:
-        verbose_name_plural = "Nationalities"
+        verbose_name_plural = 'Nationalities'
 
 
 class Gender(models.Model):
@@ -17,7 +17,7 @@ class Gender(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"{self.name} ({self.code})"
+        return f'{self.name} ({self.code})'
 
 
 class Candidate(models.Model):
@@ -36,7 +36,7 @@ class Candidate(models.Model):
 
     @property
     def nationalities(self):
-        return ", ".join(nationality.name for nationality in self.nationality.all())
+        return ', '.join(nationality.name for nationality in self.nationality.all())
 
     @property
     def main_image(self):
@@ -46,14 +46,12 @@ class Candidate(models.Model):
         return None
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}, {self.age}"
+        return f'{self.first_name} {self.last_name}, {self.age}'
 
 
 class CandidateImage(models.Model):
-    candidate = models.ForeignKey(
-        Candidate, on_delete=models.CASCADE, related_name="images"
-    )
-    image = models.ImageField(upload_to="candidate_images/")
+    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='candidate_images/')
     main_image = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
@@ -68,9 +66,7 @@ class CandidateImage(models.Model):
                 self.main_image = True
 
         else:
-            main_images = CandidateImage.objects.filter(main_image=True).exclude(
-                id=self.id
-            )
+            main_images = CandidateImage.objects.filter(main_image=True).exclude(id=self.id)
             super(CandidateImage, self).save(*args, **kwargs)
 
             for image in main_images:
@@ -82,6 +78,4 @@ class CandidateImage(models.Model):
         super(CandidateImage, self).save(*args, **kwargs)
 
     def __str__(self):
-        return (
-            f"{self.candidate.first_name} {self.candidate.last_name} - image {self.id}"
-        )
+        return f'{self.candidate.first_name} {self.candidate.last_name} - image {self.id}'

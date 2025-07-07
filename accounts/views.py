@@ -23,7 +23,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
         response = super().post(request, *args, **kwargs)
 
         if response.status_code == 200:
-            response.data["user"] = CustomUserSerializer(user).data
+            response.data['user'] = CustomUserSerializer(user).data
 
         return response
 
@@ -33,15 +33,15 @@ class LogoutView(generics.GenericAPIView):
 
     def post(self, request, *args, **kwargs):
         try:
-            refresh_token = request.data.get("refresh_token")
+            refresh_token = request.data.get('refresh_token')
             if refresh_token:
                 token = RefreshToken(refresh_token)
                 token.blacklist()
-                return Response({"message": "Logout successful"}, status=status.HTTP_200_OK)
+                return Response({'message': 'Logout successful'}, status=status.HTTP_200_OK)
             else:
                 return Response(
-                    {"error": "Refresh token is required"},
+                    {'error': 'Refresh token is required'},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
         except Exception:
-            return Response({"error": "Invalid token"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
