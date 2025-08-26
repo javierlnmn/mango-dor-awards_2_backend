@@ -26,4 +26,5 @@ urlpatterns = [
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     # API URLs
     path('api/v1/auth/', include('accounts.urls')),
+    path('api/v1/voting/', include('voting.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
