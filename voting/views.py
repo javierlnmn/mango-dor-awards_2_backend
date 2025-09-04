@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import Count, Sum
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from candidates.models import Candidate
@@ -43,7 +43,6 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
 
 class VotingViewSet(viewsets.ViewSet):
     serializer_class = VotingSerializer
-    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         user = request.user
