@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import Count, Sum
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from candidates.models import Candidate
@@ -14,7 +14,7 @@ from .serializers import CategorySerializer, CategoryVotingRankingSerializer, Vo
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     @action(detail=True, methods=['get'], url_path='category-votes')
     def category_votes(self, request, pk=None, *args, **kwargs):
