@@ -28,4 +28,5 @@ urlpatterns = [
     path('api/v1/auth/', include('accounts.urls')),
     path('api/v1/common/', include('common.urls')),
     path('api/v1/voting/', include('voting.urls')),
+    path('api/v1/candidates/', include('candidates.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
