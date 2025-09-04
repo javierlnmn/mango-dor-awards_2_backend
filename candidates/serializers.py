@@ -22,7 +22,7 @@ class CandidateImageSerializer(serializers.ModelSerializer):
 
 
 class CandidateSerializer(serializers.ModelSerializer):
-    candidate_images = CandidateImageSerializer(many=True, read_only=True)
+    images = CandidateImageSerializer(many=True, read_only=True)
     gender = GenderSerializer(read_only=True)
     nationalities = NationalitySerializer(many=True, read_only=True)
 

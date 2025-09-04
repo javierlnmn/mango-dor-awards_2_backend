@@ -1,9 +1,13 @@
 from rest_framework import serializers
 
+from candidates.serializers import CandidateSerializer
+
 from .models import Category, Vote
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    winner = CandidateSerializer(read_only=True)
+
     class Meta:
         model = Category
         fields = '__all__'
