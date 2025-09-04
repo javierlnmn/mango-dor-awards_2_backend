@@ -17,7 +17,6 @@ class Category(models.Model):
         blank=True,
         null=True,
     )
-    slug = models.SlugField(null=False, unique=True)
 
     class Meta:
         verbose_name_plural = 'Categories'

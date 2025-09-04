@@ -14,7 +14,6 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('name', 'code')
     list_filter = ('name', 'code')
     exclude = ('winner',)
-    prepopulated_fields = {'slug': ('name',)}
 
     inlines = [VoteInline]
 
