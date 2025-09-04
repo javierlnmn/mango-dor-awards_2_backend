@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from candidates.serializers import CandidateSerializer
+from candidates.serializers import CandidateLiteSerializer, CandidateSerializer
 
 from .models import Category, Vote
 
@@ -32,3 +32,17 @@ class VotingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vote
         fields = '__all__'
+
+
+class CandidateVotesSummarySerializer(serializers.Serializer):
+    candidate = CandidateLiteSerializer(read_only=True)
+    total_votes = serializers.IntegerField(read_only=True)
+    total_points = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        order_by = ['-total_points', '-total_votes']
+
+
+class CategoryVotingRankingSerializer(serializers.Serializer):
+    category = CategorySerializer(read_only=True)
+    candidates = CandidateVotesSummarySerializer(many=True, read_only=True)
