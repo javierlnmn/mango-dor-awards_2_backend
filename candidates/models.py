@@ -25,25 +25,13 @@ class Candidate(models.Model):
     last_name = models.CharField(max_length=255)
     age = models.IntegerField()
     gender = models.ForeignKey(Gender, on_delete=models.SET_NULL, null=True, blank=True)
-    nationality = models.ManyToManyField(Nationality, blank=True)
+    nationalities = models.ManyToManyField(Nationality, blank=True)
     description = models.TextField(null=True, blank=True)
     education = models.TextField(null=True, blank=True)
     experience = models.TextField(null=True, blank=True)
     skills = models.TextField(null=True, blank=True)
     languages = models.TextField(null=True, blank=True)
     linkedin_profile = models.URLField(max_length=200, null=True, blank=True)
-    slug = models.SlugField(null=False, unique=True)
-
-    @property
-    def nationalities(self):
-        return ', '.join(nationality.name for nationality in self.nationality.all())
-
-    @property
-    def main_image(self):
-        for image in self.images.all():
-            if image.main_image:
-                return image
-        return None
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}, {self.age}'
