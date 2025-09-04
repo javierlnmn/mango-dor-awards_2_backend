@@ -36,5 +36,4 @@ class SiteParameters(AbstractSingleton):
         return today >= self.winners_reveal_date
 
     class Meta:
-        verbose_name = 'Site Parameters'
         verbose_name_plural = 'Site Parameters'
