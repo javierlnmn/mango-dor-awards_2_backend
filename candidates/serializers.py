@@ -29,3 +29,18 @@ class CandidateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Candidate
         fields = '__all__'
+
+
+class CandidateLiteSerializer(serializers.ModelSerializer):
+    images = CandidateImageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Candidate
+        fields = (
+            'id',
+            'first_name',
+            'last_name',
+            'linkedin_profile',
+            'age',
+            'images',
+        )
